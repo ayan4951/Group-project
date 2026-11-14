@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova - Welcome Home</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0b1020;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #8b7cff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #9b8cff;
+}
+
+.hero {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background:
+    radial-gradient(circle at 50% 50%,
+    #30256b 0%, #0b1020 65%);
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 75px);
+    max-width: 850px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #9b8cff;
+}
+
+.hero p {
+    color: #b6b6c9;
+    font-size: 18px;
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #806bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #6650ed;
+    transform: translateY(-3px);
+}
+
+.features {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #151c32;
+    padding: 35px 25px;
+    border: 1px solid #292f4c;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #806bff;
+}
+
+.card h3 {
+    margin: 15px 0;
+    color: #a99cff;
+}
+
+.card p {
+    color: #aaaec2;
+    line-height: 1.6;
+}
+
+.icon {
+    font-size: 35px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #292f4c;
+    color: #9295a9;
+}
+
+@media(max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">NOVA.</div>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Build Something <span>Amazing.</span></h1>
+    <p>
+        Welcome to Nova. A place where creativity meets
+        innovation. Discover new possibilities and
+        bring your ideas to life.
+    </p>
+    <a href="#features" class="btn">Explore More →</a>
+</section>
+
+<section class="features" id="features">
+    <h2>What We Offer</h2>
+
+    <div class="cards">
+        <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Fast Performance</h3>
+            <p>Enjoy a smooth, fast and seamless experience.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎨</div>
+            <h3>Beautiful Design</h3>
+            <p>Modern layouts with a clean and elegant look.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📱</div>
+            <h3>Fully Responsive</h3>
+            <p>Looks amazing on phones, tablets and computers.</p>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <p>© 2026 Nova. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
