@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign In | LOGIN WATCHES</title>
+  <meta name="description" content="Sign in to your LOGIN WATCHES account. TIME DESIGNED FOR MORE.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Brand tokens ---------- */
+    :root {
+      --off-white: #FCF8F3;
+      --light-gray: #F2F2F2;
+      --slate: #444444;
+      --charcoal: #242424;
+      --blue: #49A4BB;
+      --border: #DDDDDD;
+      --error: #B3402F;
+
+      --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --ease: 0.25s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--slate);
+      background: var(--off-white);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Layout ---------- */
+    .page {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* ---------- Brand panel ---------- */
+    .brand-panel {
+      position: relative;
+      background: var(--charcoal);
+      color: var(--off-white);
+      padding: 40px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .brand-panel::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      border: 1px solid rgba(73, 164, 187, 0.35);
+      right: -220px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .brand-panel::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      border: 1px solid rgba(73, 164, 187, 0.18);
+      right: -130px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .wordmark {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: 0.32em;
+      text-decoration: none;
+      color: var(--off-white);
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      flex-direction: column;
+      width: fit-content;
+    }
+    .wordmark small {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: var(--blue);
+      margin-top: 2px;
+    }
+
+    .brand-center {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 28px;
+      padding: 24px 0;
+    }
+
+    .watch-art {
+      width: min(300px, 62%);
+      height: auto;
+      filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.45));
+    }
+
+    .editorial {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      font-weight: 600;
+      color: var(--blue);
+      margin: 0;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .brand-foot {
+      position: relative;
+      z-index: 1;
+      font-size: 0.78rem;
+      color: rgba(252, 248, 243, 0.55);
+      margin: 0;
+    }
+
+    /* ---------- Form panel ---------- */
+    .form-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px 32px;
+      position: relative;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 32px;
+      left: 40px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      color: var(--slate);
+      transition: color var(--ease);
+    }
+    .back-link:hover { color: var(--blue); }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--blue);
+      margin: 0 0 10px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(2.3rem, 4vw, 3rem);
+      line-height: 1.05;
+      color: var(--charcoal);
+      margin: 0 0 10px;
+    }
+
+    .lead {
+      margin: 0 0 32px;
+      font-size: 0.95rem;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .input-wrap { position: relative; }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 14px 16px;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+
+    input::placeholder { color: #9a9a9a; }
+
+    input:hover { border-color: #bdbdbd; }
+
+    input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(73, 164, 187, 0.18);
+    }
+
+    input[aria-invalid="true"] { border-color: var(--error); }
+    input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(179, 64, 47, 0.15); }
+
+    .input-wrap input[type="password"],
+    .input-wrap input.has-toggle { padding-right: 72px; }
+
+    .toggle-pw {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 0;
+      font: inherit;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--slate);
+      padding: 8px 10px;
+      cursor: pointer;
+      transition: color var(--ease);
+    }
+    .toggle-pw:hover { color: var(--blue); }
+
+    .error {
+      display: block;
+      min-height: 1.1em;
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--error);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 4px 0 26px;
+      font-size: 0.85rem;
+    }
+
+    .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--slate);
+    }
+    .check input {
+      width: 17px;
+      height: 17px;
+      margin: 0;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    .text-link {
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color var(--ease), border-color var(--ease);
+    }
+    .text-link:hover { color: var(--blue); border-color: var(--blue); }
+
+    .btn {
+      width: 100%;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      background: var(--charcoal);
+      border: 1px solid var(--charcoal);
+      border-radius: 2px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: background var(--ease), border-color var(--ease), transform var(--ease);
+    }
+    .btn:hover { background: var(--blue); border-color: var(--blue); }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.7; cursor: wait; }
+
+    .status {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      border-left: 3px solid var(--blue);
+      background: var(--light-gray);
+      color: var(--charcoal);
+    }
+    .status[hidden] { display: none; }
+    .status.is-error { border-left-color: var(--error); }
+
+    .signup {
+      margin: 32px 0 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+
+      .brand-panel {
+        padding: 28px 24px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand-panel::before,
+      .brand-panel::after,
+      .brand-center,
+      .brand-foot { display: none; }
+
+      .brand-mobile-tag {
+        display: block !important;
+      }
+
+      .form-panel { padding: 72px 20px 48px; }
+      .back-link { top: 24px; left: 20px; }
+    }
+
+    .brand-mobile-tag {
+      display: none;
+      position: relative;
+      z-index: 1;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      font-weight: 600;
+      color: var(--blue);
+      text-align: right;
+      max-width: 140px;
+    }
+
+    @media (max-width: 420px) {
+      .wordmark { font-size: 1.5rem; letter-spacing: 0.26em; }
+      .row { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Brand panel -->
+    <aside class="brand-panel" aria-label="LOGIN brand">
+      <!--
+        Placeholder wordmark. Replace this link's contents with the official
+        LOGIN logo asset, e.g. <img src="logo.png" alt="LOGIN WATCHES">
+      -->
+      <a class="wordmark" href="index.html" aria-label="LOGIN WATCHES home">
+        LOGIN
+        <small>WATCHES</small>
+      </a>
+
+      <div class="brand-center">
+        <svg class="watch-art" id="watchArt" viewBox="0 0 200 320" role="img" aria-label="Illustration of a LOGIN wristwatch">
+          <!-- straps -->
+          <path d="M62 8 h76 l6 92 h-88 z" fill="#3a3a3a"/>
+          <path d="M56 220 h88 l-6 92 h-76 z" fill="#3a3a3a"/>
+          <path d="M62 8 h76 l1 14 h-78 z" fill="#2e2e2e"/>
+          <path d="M57 298 h86 l-1 14 h-84 z" fill="#2e2e2e"/>
+          <!-- case -->
+          <circle cx="100" cy="160" r="82" fill="#555" />
+          <circle cx="100" cy="160" r="78" fill="#242424" stroke="#49A4BB" stroke-width="1.5"/>
+          <rect x="181" y="152" width="9" height="16" rx="2" fill="#555"/>
+          <!-- face -->
+          <circle cx="100" cy="160" r="68" fill="#FCF8F3"/>
+          <g id="ticks"></g>
+          <text x="100" y="128" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="11" font-weight="700" letter-spacing="3" fill="#242424">LOGIN</text>
+          <!-- hands -->
+          <line id="hourHand" x1="100" y1="160" x2="100" y2="123" stroke="#242424" stroke-width="4" stroke-linecap="round"/>
+          <line id="minHand"  x1="100" y1="160" x2="100" y2="106" stroke="#242424" stroke-width="2.6" stroke-linecap="round"/>
+          <line id="secHand"  x1="100" y1="172" x2="100" y2="102" stroke="#49A4BB" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="100" cy="160" r="4" fill="#49A4BB"/>
+          <circle cx="100" cy="160" r="1.5" fill="#FCF8F3"/>
+        </svg>
+
+        <p class="editorial">DESIGNED FOR EVERY MOMENT</p>
+        <h2 class="brand-title">TIME DESIGNED<br>FOR MORE.</h2>
+      </div>
+
+      <p class="brand-foot">&copy; <span class="year">2026</span> LOGIN WATCHES</p>
+      <p class="brand-mobile-tag">TIME DESIGNED FOR MORE.</p>
+    </aside>
+
+    <!-- Form panel -->
+    <main class="form-panel">
+      <a class="back-link" href="index.html">&larr; BACK TO HOME</a>
+
+      <div class="card">
+        <p class="eyebrow">WELCOME BACK</p>
+        <h1>Sign in to LOGIN</h1>
+        <p class="lead">Access your wishlist, cart and orders.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email"
+                   placeholder="you@example.com" required
+                   aria-describedby="emailError">
+            <span class="error" id="emailError" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="password" name="password"
+                     autocomplete="current-password" placeholder="Enter your password"
+                     required aria-describedby="passwordError">
+              <button type="button" class="toggle-pw" id="togglePw"
+                      aria-controls="password" aria-pressed="false">SHOW</button>
+            </div>
+            <span class="error" id="passwordError" role="alert"></span>
+          </div>
+
+          <div class="row">
+            <label class="check" for="remember">
+              <input type="checkbox" id="remember" name="remember">
+              Remember my email
+            </label>
+            <a class="text-link" href="#" id="forgotLink">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn" id="submitBtn">Sign In</button>
+
+          <p class="status" id="status" role="status" aria-live="polite" hidden></p>
+        </form>
+
+        <p class="signup">
+          New to LOGIN?
+          <a class="text-link" href="#" id="signupLink">Create an account</a>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'veltra_remembered_email';
+
+      var form = document.getElementById('loginForm');
+      var emailEl = document.getElementById('email');
+      var passEl = document.getElementById('password');
+      var emailErr = document.getElementById('emailError');
+      var passErr = document.getElementById('passwordError');
+      var toggleBtn = document.getElementById('togglePw');
+      var rememberEl = document.getElementById('remember');
+      var submitBtn = document.getElementById('submitBtn');
+      var statusEl = document.getElementById('status');
+
+      /* ---------- Footer year ---------- */
+      var yearEl = document.querySelector('.year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ---------- Decorative watch: ticks + live hands ---------- */
+      var ns = 'http://www.w3.org/2000/svg';
+      var ticks = document.getElementById('ticks');
+      for (var i = 0; i < 60; i++) {
+        var major = i % 5 === 0;
+        var line = document.createElementNS(ns, 'line');
+        line.setAttribute('x1', 100);
+        line.setAttribute('x2', 100);
+        line.setAttribute('y1', major ? 100 : 100);
+        line.setAttribute('y2', major ? 110 : 105);
+        line.setAttribute('stroke', major ? '#242424' : '#9a9a9a');
+        line.setAttribute('stroke-width', major ? 2.4 : 0.8);
+        line.setAttribute('transform', 'rotate(' + i * 6 + ' 100 160)');
+        line.setAttribute('y1', 94);
+        ticks.appendChild(line);
+      }
+
+      var hourHand = document.getElementById('hourHand');
+      var minHand = document.getElementById('minHand');
+      var secHand = document.getElementById('secHand');
+
+      function tick() {
+        var now = new Date();
+        var s = now.getSeconds();
+        var m = now.getMinutes() + s / 60;
+        var h = (now.getHours() % 12) + m / 60;
+        hourHand.setAttribute('transform', 'rotate(' + h * 30 + ' 100 160)');
+        minHand.setAttribute('transform', 'rotate(' + m * 6 + ' 100 160)');
+        secHand.setAttribute('transform', 'rotate(' + s * 6 + ' 100 160)');
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      /* ---------- Remembered email ---------- */
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          emailEl.value = saved;
+          rememberEl.checked = true;
+        }
+      } catch (e) { /* storage unavailable: ignore */ }
+
+      /* ---------- Show / hide password ---------- */
+      toggleBtn.addEventListener('click', function () {
+        var showing = passEl.type === 'text';
+        passEl.type = showing ? 'password' : 'text';
+        toggleBtn.textContent = showing ? 'SHOW' : 'HIDE';
+        toggleBtn.setAttribute('aria-pressed', String(!showing));
+        passEl.focus();
+      });
+
+      /* ---------- Validation ---------- */
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      function setError(input, errEl, message) {
+        errEl.textContent = message;
+        if (message) {
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          input.removeAttribute('aria-invalid');
+        }
+      }
+
+      function validateEmail() {
+        var v = emailEl.value.trim();
+        if (!v) { setError(emailEl, emailErr, 'Please enter your email address.'); return false; }
+        if (!emailPattern.test(v)) { setError(emailEl, emailErr, 'Please enter a valid email address.'); return false; }
+        setError(emailEl, emailErr, '');
+        return true;
+      }
+
+      function validatePassword() {
+        var v = passEl.value;
+        if (!v) { setError(passEl, passErr, 'Please enter your password.'); return false; }
+        if (v.length < 8) { setError(passEl, passErr, 'Password must be at least 8 characters.'); return false; }
+        setError(passEl, passErr, '');
+        return true;
+      }
+
+      emailEl.addEventListener('blur', function () { if (emailEl.value) validateEmail(); });
+      passEl.addEventListener('blur', function () { if (passEl.value) validatePassword(); });
+      emailEl.addEventListener('input', function () { if (emailEl.hasAttribute('aria-invalid')) validateEmail(); });
+      passEl.addEventListener('input', function () { if (passEl.hasAttribute('aria-invalid')) validatePassword(); });
+
+      function showStatus(message, isError) {
+        statusEl.textContent = message;
+        statusEl.classList.toggle('is-error', !!isError);
+        statusEl.hidden = false;
+      }
+
+      /* ---------- Submit ---------- */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusEl.hidden = true;
+
+        var okEmail = validateEmail();
+        var okPass = validatePassword();
+
+        if (!okEmail) { emailEl.focus(); return; }
+        if (!okPass) { passEl.focus(); return; }
+
+        try {
+          if (rememberEl.checked) {
+            localStorage.setItem(STORAGE_KEY, emailEl.value.trim());
+          } else {
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        } catch (err) { /* ignore */ }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing in...';
+
+        /*
+          INTEGRATION POINT:
+          No backend is connected, so no real authentication happens here.
+          Replace the setTimeout below with a call to your server, e.g.:
+
+            fetch('/api/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: emailEl.value.trim(), password: passEl.value })
+            })
+        */
+        setTimeout(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In';
+          showStatus('Your details look good, but sign-in is not connected to a server yet.', false);
+        }, 700);
+      });
+
+      /* ---------- Placeholder links (no extra pages) ---------- */
+      document.getElementById('forgotLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        showStatus('Password reset is not available yet.', false);
+      });
+      document.getElementById('signupLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        showStatus('Account creation is not available yet.', false);
+      });
+    })();
+  </script>
+</body>
+</html>
